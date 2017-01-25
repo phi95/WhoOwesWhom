@@ -1,0 +1,24 @@
+{
+  "name": "who-owes-whom",
+  "version": "1.0.0",
+  "description": "a simple web based application that keeps track of who owes you money and vice versa",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phi95/WhoOwesWhom.git"
+  },
+  "dependencies":{
+    "express":"*",
+    "body-parser":"*",
+    "mongoose":"*"
+  },
+  "author": "Phi Long Nguyen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/phi95/WhoOwesWhom/issues"
+  },
+  "homepage": "https://github.com/phi95/WhoOwesWhom#readme"
+}
