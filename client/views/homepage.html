@@ -1,0 +1,25 @@
+
+<div class="table-responsive" ng-controller="DebtorsController">
+  <div ng-controller="CreditorsController">
+    <table class="table" ng-init="getDebtors(); getCreditors()">
+      <thead>
+        <th>Name</th>
+        <th>Status</th>
+        <th>Amount</th>
+      </thead>
+      <tbody>
+        <tr ng-repeat="debtor in debtors">
+          <td>{{debtor.name}}</td>
+          <td>debtor</td>
+          <td>{{debtor.amount}}</td>
+        </tr>
+
+        <tr ng-repeat="creditor in creditors">
+          <td>{{creditor.name}}</td>
+          <td>creditor</td>
+          <td>{{creditor.amount}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
