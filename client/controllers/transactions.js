@@ -48,6 +48,12 @@ myApp.controller('TransactionsController', ['$scope', '$http', '$location', '$ro
     var personId;
     $http.get('/api/transactions/id/'+id).then(function(response2){
       personId = response2.data.id;
+      var personToEdit;
+      $http.get('/api/persons/'+personId).then(function(response3){
+        personToEdit = response3.data;
+        personToEdit.amount = personToEdit.amount-response2.data.amount;
+        $http.put('/api/persons/'+personId, personToEdit);
+      });
     });
     $http.delete('/api/transactions/id/'+id).then(function(response){
       window.location.href='#!/transactions/name/'+personId;
