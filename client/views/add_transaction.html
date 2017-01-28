@@ -1,0 +1,21 @@
+<div>
+  <h2>Add Transaction</h2>
+  <br>
+  <form ng-submit="addTransaction()">
+    <div class="form-group" ng-init="getPersons()">
+      <label for="selectPerson">Select Person</label>
+      <select class="form-control" id="selectPerson" ng-model="transaction.id">
+        <option ng-repeat="person in persons" value="{{person._id}}">{{person.name}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="amount">Amount</label>
+      <input type="number" class="form-control" id="amount" ng-model="transaction.amount">
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea class="form-control" id="description" rows="3" ng-model="transaction.description"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>

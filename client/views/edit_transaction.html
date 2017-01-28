@@ -1,0 +1,15 @@
+<div>
+  <h2>Edit Transaction</h2>
+  <br>
+  <form ng-submit="editTransaction()" ng-init="getTransaction()">
+    <div class="form-group">
+      <label for="amount">Amount</label>
+      <input type="number" class="form-control" id="amount" ng-model="transaction.amount">
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea class="form-control" id="description" rows="3" ng-model="transaction.description"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>

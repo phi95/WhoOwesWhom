@@ -3,10 +3,11 @@ var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
+app.use(express.static(__dirname+'/client'))
 app.use(bodyParser.json());
 
-Debtor = require('./models/debtor');
-Creditor = require('./models/creditor');
+Transaction = require('./models/transaction');
+Person = require('./models/person');
 
 //connecting to Mongoose
 mongoose.connect('mongodb://localhost/who-owes-whom');
@@ -16,103 +17,113 @@ app.get('/', function(req, res){
   res.send('Hello World!');
 });
 
-//debtors
-app.get('/api/debtors', function(req, res){
-  Debtor.getDebtors(function(err, debtors){
+//transaction
+app.get('/api/transactions', function(req, res){
+  Transaction.getTransactions(function(err, transactions){
     if(err){
       throw err;
     }
-    res.json(debtors);
+    res.json(transactions);
   });
 });
 
-app.get('/api/debtors/:_id', function(req, res){
-  Debtor.getDebtorById(req.params._id, function(err, debtor){
+app.get('/api/transactions/id/:_id', function(req, res){
+  Transaction.getTransactionById(req.params._id, function(err, transaction){
     if(err){
       throw err;
     }
-    res.json(debtor);
+    res.json(transaction);
   });
 });
 
-app.post('/api/debtors', function(req, res){
-  var debtor = req.body;
-  Debtor.addDebtor(debtor, function(err, debtor){
+app.get('/api/transactions/name/:_personId', function(req, res){
+  var personId = req.params._personId;
+  Transaction.getTransactionsByPersonId(personId, function(err, transactions){
     if(err){
       throw err;
     }
-    res.json(debtor);
+    res.json(transactions);
   });
 });
 
-app.put('/api/debtors/:_id', function(req, res){
+app.post('/api/transactions', function(req, res){
+  var transaction = req.body;
+  Transaction.addTransaction(transaction, function(err, transaction){
+    if(err){
+      throw err;
+    }
+    res.json(transaction);
+  });
+});
+
+app.put('/api/transactions/id/:_id', function(req, res){
   var id = req.params._id;
-  var debtor = req.body;
-  Debtor.updateDebtor(id, debtor, {}, function(err, debtor){
+  var transaction = req.body;
+  Transaction.updateTransaction(id, transaction, {}, function(err, transaction){
     if(err){
       throw err;
     }
-    res.json(debtor);
+    res.json(transaction);
   });
 });
 
-app.delete('/api/debtors/:_id', function(req, res){
+app.delete('/api/transactions/id/:_id', function(req, res){
   var id = req.params._id;
-  Debtor.deleteDebtor(id, function(err, debtor){
+  Transaction.deleteTransaction(id, function(err, transaction){
     if(err){
       throw err;
     }
-    res.json(debtor);
+    res.json(transaction);
   });
 });
 
-//creditors
-app.get('/api/creditors', function(req, res){
-  Creditor.getCreditors(function(err, creditors){
+//persons
+app.get('/api/persons', function(req, res){
+  Person.getPersons(function(err, persons){
     if(err){
       throw err;
     }
-    res.json(creditors);
+    res.json(persons);
   });
 });
 
-app.get('/api/creditors/:_id', function(req, res){
-  Creditor.getCreditorById(req.params._id, function(err, creditor){
+app.get('/api/persons/:_id', function(req, res){
+  Person.getPersonById(req.params._id, function(err, person){
     if(err){
       throw err;
     }
-    res.json(creditor);
+    res.json(person);
   });
 });
 
-app.post('/api/creditors', function(req, res){
-  var creditor = req.body;
-  Creditor.addCreditor(creditor, function(err, creditor){
+app.post('/api/persons', function(req, res){
+  var person = req.body;
+  Person.addPerson(person, function(err, person){
     if(err){
       throw err;
     }
-    res.json(creditor);
+    res.json(person);
   });
 });
 
-app.put('/api/creditors/:_id', function(req, res){
+app.put('/api/persons/:_id', function(req, res){
   var id = req.params._id;
-  var creditor = req.body;
-  Creditor.addCreditor(id, creditor, {}, function(err, creditor){
+  var person = req.body;
+  Person.updatePerson(id, person, {}, function(err, person){
     if(err){
       throw err;
     }
-    res.json(creditor);
+    res.json(person);
   });
 });
 
-app.delete('/api/creditors/:_id', function(req, res){
+app.delete('/api/persons/:_id', function(req, res){
   var id = req.params._id;
-  Creditor.deleteCreditor(id, function(err, creditor){
+  Person.deletePerson(id, function(err, person){
     if(err){
       throw err;
     }
-    res.json(creditor);
+    res.json(person);
   });
 });
 

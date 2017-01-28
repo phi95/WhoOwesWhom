@@ -1,0 +1,15 @@
+<div>
+  <h2>Edit</h2>
+  <br>
+  <form ng-submit="editPerson()" ng-init="getPerson()">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" id="name" ng-model="person.name">
+    </div>
+    <div class="form-group">
+      <label for="amount">Amount</label>
+      <input type="number" class="form-control" id="amount" ng-model="person.amount">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>

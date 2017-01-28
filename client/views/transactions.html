@@ -1,0 +1,26 @@
+<div ng-init="getTransactionsByPersonId()">
+  <h2>{{name}}</h2>
+  <br>
+  <table class="table">
+    <thead>
+      <th>Amount</th>
+      <th>Description</th>
+      <th>Time</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </thead>
+    <tbody>
+      <tr ng-repeat="transaction in transactions">
+        <td>{{transaction.amount}}</td>
+        <td>{{transaction.description}}</td>
+        <td>{{transaction.time}}</td>
+        <td><a href="#!/transactions/edit/{{transaction._id}}" class="btn">
+          <span class="glyphicon glyphicon-edit"></span>
+        </a></td>
+        <td><a href="#" class="btn" ng-click="deleteTransaction(transaction._id)">
+          <span class="glyphicon glyphicon-remove"></span>
+        </a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
