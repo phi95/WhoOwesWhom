@@ -28,8 +28,15 @@ myApp.controller('TransactionsController', ['$scope', '$http', '$location', '$ro
   }
   $scope.addTransaction = function(){
     $http.post('/api/transactions', $scope.transaction).then(function(response){
+      var personToEdit;
+      $http.get('/api/persons/'+$scope.transaction.id).then(function(response2){
+        personToEdit = response2.data;
+        personToEdit.amount = personToEdit.amount+$scope.transaction.amount;
+        $http.put('/api/persons/'+$scope.transaction.id, personToEdit);
+      });
       window.location.href='#!/transactions/name/'+$scope.transaction.id;
     });
+
   }
   $scope.editTransaction = function(){
     var id = $routeParams.id;
