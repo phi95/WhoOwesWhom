@@ -6,6 +6,7 @@
           <th>Amount</th>
           <th>Transactions</th>
           <th>Edit</th>
+          <th>Delete</th>
         </thead>
         <tbody>
           <tr ng-repeat="person in persons">
@@ -17,6 +18,9 @@
             </a></td>
             <td><a href="#!/persons/edit/{{person._id}}" class="btn">
               <span class="glyphicon glyphicon-edit"></span>
+            </a></td>
+            <td><a href="#" class="btn" ng-click="deletePerson(person._id)">
+              <span class="glyphicon glyphicon-remove"></span>
             </a></td>
           </tr>
         </tbody>

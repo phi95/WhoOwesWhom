@@ -6,7 +6,6 @@ myApp.controller('PersonsController', ['$scope', '$http', '$location', '$routePa
       $scope.persons = response.data;
     })
   }
-
   $scope.getPersonStatus = function(person){
     if(person.amount > 0){
       return 'Creditor';
@@ -16,25 +15,26 @@ myApp.controller('PersonsController', ['$scope', '$http', '$location', '$routePa
       return 'Even';
     }
   }
-
   $scope.getPerson = function(){
     var id = $routeParams.id;
     $http.get('/api/persons/'+id).then(function(response){
       $scope.person = response.data;
     });
   }
-
   $scope.addPerson = function(){
     $http.post('/api/persons', $scope.person).then(function(response){
       window.location.href='#!/persons';
     });
   }
-
   $scope.editPerson = function(){
     var id = $routeParams.id;
     $http.put('/api/persons/'+id, $scope.person).then(function(response){
       window.location.href='#!/persons';
     });
   }
-
+  $scope.deletePerson = function(id){
+    $http.delete('/api/persons/'+id).then(function(response){
+      window.location.href='#!/persons';
+    });
+  }
 }])
