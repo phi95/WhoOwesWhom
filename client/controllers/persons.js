@@ -15,6 +15,16 @@ myApp.controller('PersonsController', ['$scope', '$http', '$location', '$routePa
       return 'Even';
     }
   }
+  $scope.netAmount = function(){
+    $http.get('/api/persons').then(function(response){
+      var data = response.data;
+      var total=0;
+      for(var i=0; i<data.length; i++){
+        total += data[i].amount;
+      }
+      $scope.totalAmount = total;
+    })
+  }
   $scope.getPerson = function(){
     var id = $routeParams.id;
     $http.get('/api/persons/'+id).then(function(response){

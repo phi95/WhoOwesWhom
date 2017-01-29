@@ -1,28 +1,31 @@
-<div class="table-responsive" ng-init="getPersons()">
-      <table class="table">
-        <thead>
-          <th>Name</th>
-          <th>Status</th>
-          <th>Amount</th>
-          <th>Transactions</th>
-          <th>Edit</th>
-          <th>Delete</th>
-        </thead>
-        <tbody>
-          <tr ng-repeat="person in persons">
-            <td>{{person.name}}</td>
-            <td>{{getPersonStatus(person)}}</td>
-            <td>{{person.amount}}</td>
-            <td><a href="#!/transactions/name/{{person._id}}" class="btn">
-              <span class="glyphicon glyphicon-th-list"></span>
-            </a></td>
-            <td><a href="#!/persons/edit/{{person._id}}" class="btn">
-              <span class="glyphicon glyphicon-edit"></span>
-            </a></td>
-            <td><a href="#" class="btn" ng-click="deletePerson(person._id)">
-              <span class="glyphicon glyphicon-remove"></span>
-            </a></td>
-          </tr>
-        </tbody>
-      </table>
+<div ng-init="getPersons()">
+  <h4 ng-init="netAmount()">Net Credit: {{totalAmount}}</h4>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <th>Name</th>
+        <th>Status</th>
+        <th>Amount</th>
+        <th>Transactions</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </thead>
+      <tbody>
+        <tr ng-repeat="person in persons">
+          <td>{{person.name}}</td>
+          <td>{{getPersonStatus(person)}}</td>
+          <td>{{person.amount}}</td>
+          <td><a href="#!/transactions/name/{{person._id}}" class="btn">
+            <span class="glyphicon glyphicon-th-list"></span>
+          </a></td>
+          <td><a href="#!/persons/edit/{{person._id}}" class="btn">
+            <span class="glyphicon glyphicon-edit"></span>
+          </a></td>
+          <td><a href="#" class="btn" ng-click="deletePerson(person._id)">
+            <span class="glyphicon glyphicon-remove"></span>
+          </a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

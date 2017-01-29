@@ -1,6 +1,17 @@
 var myApp = angular.module('myApp');
 
 myApp.controller('TransactionsController', ['$scope', '$http', '$location', '$routeParams', function($scope, $http, $location, $routeParams){
+  $scope.netAmount = function(){
+    var personId = $routeParams.personId;
+    $http.get('/api/transactions/name/'+personId).then(function(response){
+      var data = response.data;
+      var total=0;
+      for(var i=0; i<data.length; i++){
+        total += data[i].amount;
+      }
+      $scope.totalAmount = total;
+    })
+  }
   $scope.getTransactions = function(){
     $http.get('/api/transactions').then(function(response){
       $scope.transactions = response.data;
