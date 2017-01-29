@@ -33,6 +33,12 @@ myApp.controller('PersonsController', ['$scope', '$http', '$location', '$routePa
   }
   $scope.addPerson = function(){
     $http.post('/api/persons', $scope.person).then(function(response){
+      var initialTransaction = {
+        id: response.data._id,
+        amount: response.data.amount,
+        description: 'initial'
+      }
+      $http.post('/api/transactions', initialTransaction);
       window.location.href='#!/persons';
     });
   }

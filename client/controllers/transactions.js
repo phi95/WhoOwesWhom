@@ -47,11 +47,11 @@ myApp.controller('TransactionsController', ['$scope', '$http', '$location', '$ro
       });
       window.location.href='#!/transactions/name/'+$scope.transaction.id;
     });
-
   }
   $scope.editTransaction = function(){
     var id = $routeParams.id;
     $http.put('/api/transactions/id/'+id, $scope.transaction).then(function(response){
+
       window.location.href='#!/transactions/name/'+$scope.transaction.id;
     });
   }
